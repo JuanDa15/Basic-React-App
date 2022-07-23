@@ -1,27 +1,28 @@
+import React from "react";
 import "./styles.css";
 import Form from "./Form";
+import { Title } from "./Title";
+import { Theme } from "./Theme";
 const movies = [
   {
-    name: "spider man",
+    name: "Avengers",
     availableTickets: 3
   },
   {
-    name: "Irom man",
+    name: "Terminator",
     availableTickets: 4
-  },
-  {
-    name: "Batman",
-    availableTickets: 5
   }
 ];
 
 export default function App() {
+  const [theme, setTheme] = React.useState("avengers");
+
   return (
-    <div>
-      <h2> Movies </h2>
+    <Theme theme={theme}>
+      <Title> Movies</Title>
       {movies.map((movie, index) => (
-        <Form {...movie} key={index} />
+        <Form {...movie} key={index} updateTheme={() => setTheme(movie.name)} />
       ))}
-    </div>
+    </Theme>
   );
 }
